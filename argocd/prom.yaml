@@ -18,7 +18,8 @@ spec:
       helm:
         releaseName: prometheus
         valueFiles:
-          - $values/values/values-prod.yaml
+          - $values/values/values-global.yaml
+          - $values/values/values-test1.yaml
     - repoURL: "https://github.com/yzhelezko/k8s.git"
       targetRevision: main
       ref: values
