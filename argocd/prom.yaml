@@ -17,6 +17,7 @@ spec:
     targetRevision: 45.10.1
     helm:
       releaseName: prometheus
+      path: base
       valueFiles:
         - ../values/values-prod.yaml
   destination:
