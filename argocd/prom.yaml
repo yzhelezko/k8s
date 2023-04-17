@@ -11,15 +11,17 @@ metadata:
     notifications.argoproj.io/subscribe.on-sync-succeeded.slack: events-deploy
 spec:
   project: default
-  source:
-    chart: kube-prometheus-stack
-    repoURL: https://prometheus-community.github.io/helm-charts
-    targetRevision: 45.10.1
-    helm:
-      releaseName: prometheus
-      path: base
-      valueFiles:
-        - ../values/values-prod.yaml
+  sources:
+    - repoURL: https://prometheus-community.github.io/helm-charts
+      chart: kube-prometheus-stack
+      targetRevision: 45.10.1
+      helm:
+        releaseName: prometheus
+        valueFiles:
+          - $values/values/values-prod.yaml
+    - repoURL: "https://github.com/yzhelezko/k8s.git"
+      targetRevision: main
+      ref: values
   destination:
     namespace: prom
     server: "https://kubernetes.default.svc"
